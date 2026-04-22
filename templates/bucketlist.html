@@ -9,7 +9,8 @@
                 <img src="{{ url_for('static', filename='images/'+each_place.photo) }}" class="card-img-top" alt="...">
             {% endif %}
             <div class="card-body text-center">
-                <h5 class="card-title">{{ each_place.name }}</h5>
+                <h5 class="card-title">{{ each_place.name }} ${{ each_place.price }}</h5>
+                <h5 class="card-title">{{ each_place.date }}</h5>
                 <a href={{"/destinations/"+each_place.id|string}} class="btn btn-primary">View</a>
                 <form action="{{'/destinations/delete/'+each_place.id|string}}" method="POST" style="display: inline;">
                     <button type="submit" class="btn btn-primary">Delete</button>

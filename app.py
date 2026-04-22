@@ -18,12 +18,21 @@ def get_dests_by_id(dest_id):
 def new_destination():
     if request.method =="POST":
         dest_name = request.form.get('dest_name')
+        dest_price = request.form.get('dest_price')
+        dest_date = request.form.get('dest_date')
         destination = {
             "id": len(destinations) + 1,
             "name": dest_name,
-            "photo": dest_name + ".jpg"
+            "photo": dest_name + ".jpg",
+            "price": dest_price,
+            "date": dest_date
         }
-        destinations.append(destination)
+        if len(dest_name) >= 100:
+            return render_template('error.html')
+        elif len(dest_price) >= 100:
+            return render_template('error.html')
+        else:
+            destinations.append(destination)
 
         return f'<h1>Your form was submitted to add {dest_name}. <a href="/home">Continue</a></h1>'
     return render_template('new_dest.html')
