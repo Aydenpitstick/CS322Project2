@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if this_place == null %}
+        <h1>Error, destination not found!</h1>
+    {% else %}
+        <div class="card" style="width: 300px"></div>
+            {% if this_place.photo == null or this_place,photo == "none" %}
+                <img src="{{ url_for('static', filename='images/tahiti.jpg') }}" class="card-img-top" alt="...">
+            {% else %}
+                <img src="{{ url_for('static', filename='images/'+this_place.photo) }}" class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ this_place.name }}</h5>
+            </div>
+    {% endif %}
+    <br>
+    <a href="/home">Return Home</a>
+{% endblock %}
