@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for each_place in places %}
+        <div class="card" style="width: 300px">
+            {% if each_place.photo == null or each_place.photo == "none" %}
+                <img src="{{ url_for('static', filename='images/tahiti.jpg') }}" class="card-img-top" alt="...">
+            {% else %}
+                <img src="{{ url_for('static', filename='images/'+each_place.photo) }}" class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ each_place.name }}</h5>
+                <a href={{"/destinations/"+each_place.id|string}} class="btn btn-primary">View</a>
+                <form action="{{'/destinations/delete/'+each_place.id|string}}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+    <br>
+    <a href="/new_destination">Enter new bucket list destination</a>
+{% endblock %}
